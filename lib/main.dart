@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals/pages/categories.dart';
+import 'package:meals/pages/meal.dart';
 import 'package:meals/pages/meals.dart';
 
 void main() => runApp(MealsApp());
@@ -25,7 +26,10 @@ class MealsApp extends StatelessWidget {
         ),
       ),
       home: CategoriesPage(),
-      routes: {'/categories-meals': (context) => MealsPage()}, //HomePage(),
+      routes: {
+        '/categories-meals': (context) => MealsPage(),
+        '/meal-detail': (context) => MealDetailPage(),
+      }, //HomePage(),
     );
   }
 }

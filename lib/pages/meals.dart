@@ -21,7 +21,7 @@ class MealsPage extends StatelessWidget {
       body: ListView.builder(
         itemCount: meals.length,
         itemBuilder: (context, index) {
-          return MealItem(meals[index]);
+          return MealItem(meals[index], category.color);
         },
       ),
     );
