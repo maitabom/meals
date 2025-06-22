@@ -4,7 +4,7 @@ import 'package:meals/models/complexity.dart';
 import 'package:meals/models/cost.dart';
 import 'package:meals/models/meal.dart';
 
-const DUMMY_CATEGORIES = [
+const dummyCategories = [
   Category(id: 'c1', title: 'Italiano', color: Colors.purple),
   Category(id: 'c2', title: 'Rápido & Fácil', color: Colors.red),
   Category(id: 'c3', title: 'Hamburgers', color: Colors.orange),
