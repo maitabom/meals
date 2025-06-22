@@ -10,4 +10,14 @@ class Category {
     required this.title,
     this.color = Colors.orange,
   });
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! Category) return false;
+    return id == other.id && title == other.title;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
 }
