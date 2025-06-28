@@ -23,6 +23,7 @@ class MealsApp extends StatelessWidget {
         textTheme: ThemeData.light().textTheme.copyWith(
           titleLarge: TextStyle(fontSize: 24, fontFamily: 'RobotoCondensed'),
           titleMedium: TextStyle(fontSize: 20, fontFamily: 'RobotoCondensed'),
+          titleSmall: TextStyle(fontFamily: 'RobotoCondensed'),
         ),
       ),
       home: CategoriesPage(),
