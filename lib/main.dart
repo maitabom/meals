@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meals/pages/categories.dart';
 import 'package:meals/pages/meal.dart';
 import 'package:meals/pages/meals.dart';
+import 'package:meals/pages/tabs.dart';
 
 void main() => runApp(MealsApp());
 
@@ -14,6 +15,7 @@ class MealsApp extends StatelessWidget {
       title: 'DeliMeals',
       theme: ThemeData(
         primarySwatch: Colors.pink,
+        primaryColor: Colors.pink,
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: const Color.fromARGB(255, 4, 5, 5),
           secondary: Colors.amber,
@@ -26,7 +28,7 @@ class MealsApp extends StatelessWidget {
           titleSmall: TextStyle(fontFamily: 'RobotoCondensed'),
         ),
       ),
-      home: CategoriesPage(),
+      home: TabsPage(),
       routes: {
         '/categories-meals': (context) => MealsPage(),
         '/meal-detail': (context) => MealDetailPage(),
