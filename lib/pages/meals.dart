@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:meals/components/meal_item.dart';
-import 'package:meals/data/dummy_data.dart';
 import 'package:meals/models/category.dart';
+import 'package:meals/models/meal.dart';
 
 class MealsPage extends StatelessWidget {
-  const MealsPage({super.key});
+  final List<Meal> meals;
+
+  const MealsPage(this.meals, {super.key});
 
   @override
   Widget build(BuildContext context) {
     final category = ModalRoute.of(context)?.settings.arguments as Category;
-    final meals = dummyMeals.where((meal) {
+    final mealsAvailable = meals.where((meal) {
       return meal.categories.contains(category);
     }).toList();
 
@@ -19,9 +21,9 @@ class MealsPage extends StatelessWidget {
         backgroundColor: category.color,
       ),
       body: ListView.builder(
-        itemCount: meals.length,
+        itemCount: mealsAvailable.length,
         itemBuilder: (context, index) {
-          return MealItem(meals[index], category.color);
+          return MealItem(mealsAvailable[index], category.color);
         },
       ),
     );

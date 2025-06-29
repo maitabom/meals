@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:meals/data/dummy_data.dart';
+import 'package:meals/models/meal.dart';
+import 'package:meals/models/settings.dart';
 import 'package:meals/pages/meal.dart';
 import 'package:meals/pages/meals.dart';
 import 'package:meals/pages/settings.dart';
@@ -6,8 +9,31 @@ import 'package:meals/pages/tabs.dart';
 
 void main() => runApp(MealsApp());
 
-class MealsApp extends StatelessWidget {
+class MealsApp extends StatefulWidget {
   const MealsApp({super.key});
+
+  @override
+  State<MealsApp> createState() => _MealsAppState();
+}
+
+class _MealsAppState extends State<MealsApp> {
+  Settings settings = Settings();
+  List<Meal> availableMeals = dummyMeals;
+
+  void applySettings(Settings settings) {
+    setState(() {
+      this.settings = settings;
+
+      availableMeals = dummyMeals.where((meal) {
+        final filterGluten = settings.glutenFree && !meal.glutenFree;
+        final filterLactose = settings.lactoseFree && !meal.lactoseFree;
+        final vegan = settings.vegan && !meal.vegan;
+        final vegetarian = settings.vegetarian && !meal.vegetarian;
+
+        return !filterGluten && !filterLactose && !vegan && !vegetarian;
+      }).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +72,9 @@ class MealsApp extends StatelessWidget {
       ),
       home: TabsPage(),
       routes: {
-        '/categories-meals': (context) => MealsPage(),
+        '/categories-meals': (context) => MealsPage(availableMeals),
         '/meal-detail': (context) => MealDetailPage(),
-        '/settings': (context) => SettingsPage(),
+        '/settings': (context) => SettingsPage(applySettings, settings),
       }, //HomePage(),
     );
   }
