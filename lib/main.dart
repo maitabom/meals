@@ -20,6 +20,22 @@ class MealsApp extends StatelessWidget {
           primary: const Color.fromARGB(255, 4, 5, 5),
           secondary: Colors.amber,
         ),
+        switchTheme: SwitchThemeData(
+          thumbColor: WidgetStateProperty.resolveWith<Color?>((states) {
+            if (states.contains(WidgetState.selected)) {
+              return Colors.pink;
+            }
+
+            return Colors.grey;
+          }),
+          trackColor: WidgetStateProperty.resolveWith<Color?>((states) {
+            if (states.contains(WidgetState.selected)) {
+              return Colors.pink.shade200;
+            }
+
+            return Colors.grey.shade300;
+          }),
+        ),
         fontFamily: 'Raleway',
         canvasColor: Color.fromRGBO(255, 254, 229, 1),
         textTheme: ThemeData.light().textTheme.copyWith(
