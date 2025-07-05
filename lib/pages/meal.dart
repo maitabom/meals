@@ -9,7 +9,10 @@ class MealDetailPageArguments {
 }
 
 class MealDetailPage extends StatelessWidget {
-  const MealDetailPage({super.key});
+  final Function(Meal) onToggleFavorite;
+  final bool Function(Meal) isFavorite;
+
+  const MealDetailPage(this.onToggleFavorite, this.isFavorite, {super.key});
 
   Widget createSectionTitle(BuildContext context, String title) {
     return Container(
@@ -91,9 +94,9 @@ class MealDetailPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.star),
+        child: Icon(isFavorite(meal) ? Icons.star : Icons.star_border),
         onPressed: () {
-          Navigator.of(context).pop(meal.title);
+          onToggleFavorite(meal);
         },
       ),
     );
